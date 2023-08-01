@@ -1,4 +1,5 @@
 import { Project, ToDoItem } from "./classes"
+import { ToDoModal } from "./modal";
 
 const projectsLib = [];
 
@@ -23,21 +24,24 @@ const addProject = (libraryToAddTo,projectTitle) => {
     return tempNewProject
 }
 
-const addToDoItem = (ItemToAdd,ProjectToAddTo) => {
-    const tempNewTodoItem = new ToDoItem(...ItemToAdd)
-    ProjectToAddTo.toDoListLib.push(ItemToAdd);
-    // render()'
-    return tempNewTodoItem;
-}
+// const addToDoItem = (ItemToAdd,ProjectToAddTo) => {
+//     const tempNewTodoItem = new ToDoItem(...ItemToAdd)
+//     ProjectToAddTo.toDoListLib.push(ItemToAdd);
+//     // render()'
+//     return tempNewTodoItem;
+// }
 const loadProjects = () => {
-    const mapProjects = projectsLib.map(projectfolder => {
+    const mapProjects = projectsLib.map((projectFolder, index) => {
         const pane = document.querySelector('#left-pane')
         const projectTile = newElement('div',pane);
-            console.log('Projects:', projectfolder)
+            console.log('Projects:', projectFolder)
+            projectTile.setAttribute('data-project', index)
             projectTile.classList.add('project-tiles')
-            projectTile.textContent = projectfolder.title;
-            projectTile.addEventListener('click', ()=> {
-                console.log(projectfolder.toDoListLib)
+            projectTile.textContent = projectFolder.title;
+            projectTile.addEventListener('click', (e)=> {
+                console.log()
+                ToDoModal(e.target.dataset.project)
+                console.log(projectFolder.toDoListLib)
                 // change body container content
             })
         })
@@ -45,7 +49,7 @@ const loadProjects = () => {
 };
 
 
-export {newElement, getProjectTitles, addProject, addToDoItem, loadProjects, projectsLib}
+export {newElement, getProjectTitles, addProject, loadProjects, projectsLib}
 
 // const test = addProject(projectsLib,'Test');
 // const test2 = addProject(projectsLib,'test2');

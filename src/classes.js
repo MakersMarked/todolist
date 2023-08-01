@@ -1,3 +1,5 @@
+import { projectsLib } from "./logic";
+
 export class Project {
     constructor(title){
         this.title = title;
@@ -10,12 +12,12 @@ export class Project {
         this._title = newTitle
     }
         
-    // addToDoItem (ItemToAdd,ProjectToAddTo) {
-    //     const tempNewTodoItem = new ToDoItem()
-    //     ProjectToAddTo.toDoListLib.push(ItemToAdd);
-    //     // render()'
-    //     return tempNewTodoItem
-    // };
+    addToDoItem (title, descript,dueDate,urgent) {
+        const tempNewTodoItem = new ToDoItem(title,descript,dueDate,urgent);
+        this.toDoListLib.push(tempNewTodoItem);
+        // render()'
+        return tempNewTodoItem
+    };
     rmvToDoItem (ItemToDelete) {this.toDoListLib.splice(ItemToDelete, 1)};
 };
 

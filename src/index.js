@@ -17,13 +17,17 @@ const Html = (() => {
                     title.textContent = 'To-Do List'
 
             // Menu content(left-pane)
-            
         const pane = newElement('div',content);
             pane.setAttribute('id', 'left-pane');
             const createProjBtn = newElement('div',pane);
                 createProjBtn.classList.add('project-tiles');
+                createProjBtn.setAttribute('id','create-proj-btn')
                 createProjBtn.textContent =  '+ New Project';
-                createProjBtn.addEventListener('click', ()=> {ProjectModal();});//render()
+                createProjBtn.addEventListener('click', (e)=> {
+                    ProjectModal();
+                //render()
+            });
+
             // body content(main content)
         const bodyContainer = newElement('div',content);
             bodyContainer.setAttribute('id','body-container');
