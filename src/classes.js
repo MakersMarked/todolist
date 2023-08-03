@@ -3,7 +3,7 @@ import { projectsLib } from "./logic";
 export class Project {
     constructor(title){
         this.title = title;
-        this.toDoListLib = []; 
+        this.toDoListLib = [];
     };
     get title() {
             return this._title
@@ -11,7 +11,7 @@ export class Project {
     set title(newTitle){
         this._title = newTitle
     }
-        
+
     addToDoItem (title, descript,dueDate,urgent) {
         const tempNewTodoItem = new ToDoItem(title,descript,dueDate,urgent);
         this.toDoListLib.push(tempNewTodoItem);

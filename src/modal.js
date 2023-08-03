@@ -1,7 +1,8 @@
 import { Project, ToDoItem } from './classes';
 import{ newElement} from './index';
-import { addProject, projectsLib,loadProjects } from './logic';
+import { addProject, projectsLib,loadProjects, loadToDos } from './logic';
 import datepicker from 'js-datepicker';
+import {BodyHtml} from './todolib'
 
 
 
@@ -9,6 +10,7 @@ const ProjectModal = () => {
     const bodyContainer = document.querySelector('#body-container');
     function closeModal(){
         modal.style.display ='none'
+        modal.remove();
     }
 const modal = newElement('div', bodyContainer );
     modal.setAttribute('id', 'modal-container');
@@ -46,7 +48,8 @@ const modal = newElement('div', bodyContainer );
 const ToDoModal = (proj) => {
     const bodyContainer = document.querySelector('#body-container');
     function closeModal(){
-        modal.style.display ='none'
+        modal.style.display ='none';
+        modal.remove();
     }
     const modal = newElement('div', bodyContainer );
     modal.setAttribute('id', 'modal-container');
@@ -77,9 +80,14 @@ const ToDoModal = (proj) => {
             const addBtn = newElement('button',btnDiv);
             addBtn.textContent = 'Add To-Do Item';
             addBtn.addEventListener('click',() => {
-                const tiles = document.querySelectorAll('.project-tiles');
-                projectsLib[proj].addToDoItem(toDoNameInput.value,descriptInput.value,'22',urgent.value)
-                closeModal()
+                projectsLib[proj].addToDoItem(
+                    toDoNameInput.value,
+                    descriptInput.value,
+                    '08/28/2023',
+                    urgent.value);
+                loadToDos(proj);
+                closeModal();
+               
                 console.log(projectsLib)
                 console.log()
                 // render()
