@@ -28,5 +28,11 @@ export class ToDoItem{
         this.dueDate = dueDate;
         this.urgent = urgent;
         this.completed = false;
+        if (title || descript || dueDate==''){
+            alert('you must enter a value')
+        }
     }
+    
+        
+    
 };

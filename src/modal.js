@@ -19,13 +19,14 @@ const modal = newElement('div', bodyContainer );
 
     const modalContent = newElement('div',modal);
     modalContent.classList.add('modal-content')
-        const close = newElement('span', modalContent)
-            close.classList.add('close');
-            close.textContent = 'X';
-            close.addEventListener('click', closeModal)
+        
         const modalTitle = newElement('h3',modalContent);
             modalTitle.classList.add('modal-title');
             modalTitle.textContent = 'New Project';
+        const close = newElement('span', modalTitle)
+            close.classList.add('close');
+            close.textContent = 'X';
+            close.addEventListener('click', closeModal)
         const projectNameInput = newElement('input', modalContent);
             projectNameInput.classList.add('input');
             projectNameInput.placeholder = 'Name your Project';
@@ -68,10 +69,10 @@ const ToDoModal = (proj) => {
         const toDoNameInput = newElement('input', modalContent);
             toDoNameInput.classList.add('input');
             toDoNameInput.placeholder = 'Name your Project';
-        // const dueDate = newElement('input',modalContent);
-        //     dueDate.classList.add('date')
-        //     dueDate.type = 'text'
-        //     const picker = datepicker('.date');
+        const dueDate = newElement('input',modalContent);
+            dueDate.classList.add('date')
+            dueDate.type = 'text'
+            const picker = datepicker('.date');
         const descriptInput = newElement('textarea',modalContent);
         const urgent = newElement('input', modalContent);
             urgent.type = 'checkbox';
@@ -83,7 +84,7 @@ const ToDoModal = (proj) => {
                 projectsLib[proj].addToDoItem(
                     toDoNameInput.value,
                     descriptInput.value,
-                    '08/28/2023',
+                    dueDate.value,
                     urgent.value);
                 loadToDos(proj);
                 closeModal();
